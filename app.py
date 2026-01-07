@@ -111,7 +111,7 @@ with col2:
 
 # Grafik Biaya di bagian bawah
 st.markdown("---")
-fig_cost = px.line(threshold_table, x='threshold_model', y='total_cost', 
+fig_cost = px.line(threshold_tmp, x='threshold_model', y='total_cost', 
                   title='Analisis Biaya (Semakin Rendah Semakin Baik)')
 fig_cost.add_vline(x=best_threshold, line_dash="dash", line_color="red")
 st.plotly_chart(fig_cost, use_container_width=True)
