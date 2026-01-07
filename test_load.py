@@ -1,6 +1,6 @@
 # test_load.py
 import joblib
-import transformers
+from my_transformers import DateTransformer
 
 print("START")
 
