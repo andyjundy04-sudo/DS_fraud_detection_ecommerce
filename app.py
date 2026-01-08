@@ -121,11 +121,11 @@ with col1:
         title="Top 10 Feature Importance"
     )
 
-    st.plotly_chart(fig_fi, use_container_width=True)
+    st.plotly_chart(fig_fi, width="stretch")
     
 with col2:
     st.subheader("📊 Prediction Results")
-    if st.button("Jalankan Deteksi", use_container_width=True):
+    if st.button("Jalankan Deteksi", width="stretch"):
         prob = model.predict_proba(user_data_df)[0, 1]
         is_fraud = prob >= best_threshold
         
@@ -137,11 +137,11 @@ with col2:
 
         fig = px.pie(values=[prob, 1-prob], names=['Risk', 'Safe'], hole=0.5,
                      color_discrete_sequence=['#e74c3c', '#2ecc71'])
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
 # Grafik Biaya di bagian bawah
 st.markdown("---")
 fig_cost = px.line(threshold_tmp, x='threshold_model', y='total_cost', 
                   title='Analisis Biaya (Semakin Rendah Semakin Baik)')
 fig_cost.add_vline(x=best_threshold, line_dash="dash", line_color="red")
-st.plotly_chart(fig_cost, use_container_width=True)
+st.plotly_chart(fig_cost, width="stretch")
