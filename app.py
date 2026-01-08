@@ -19,11 +19,11 @@ def load_assets():
     curr_dir = os.path.dirname(__file__)
     model_path = os.path.join(curr_dir, "fraud_model.pkl")
     table_path = os.path.join(curr_dir, "threshold_table.csv")
-    fi_df = pd.read_csv(os.path.join(curr_dir, 'feature_importance_permutation.csv'))
+    fi_path = pd.read_csv(os.path.join(curr_dir, 'feature_importance_permutation.csv'))
     
     model = joblib.load(model_path)
     threshold_data = pd.read_csv(table_path)
-    fi_df = pd.read_csv(fi_df)
+    fi_df = pd.read_csv(fi_path)
     return model, threshold_data, fi_df
 
 model, threshold_table, fi_df = load_assets()
@@ -118,7 +118,7 @@ with col1:
     )
 
     st.plotly_chart(fig_fi, use_container_width=True)
-
+    
 with col2:
     st.subheader("📊 Prediction Results")
     if st.button("Jalankan Deteksi", use_container_width=True):
