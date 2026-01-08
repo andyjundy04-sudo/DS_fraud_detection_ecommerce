@@ -28,10 +28,6 @@ def load_assets():
 
 model, threshold_table, fi_df = load_assets()
 
-st.write(type(fi_df))            # pandas.core.frame.DataFrame
-st.write(type(threshold_table))  # pandas.core.frame.DataFrame
-st.write(type(model))            # sklearn / xgboost estimator
-
 # ---------------------------------------------------------
 # SIDEBAR
 # ---------------------------------------------------------
