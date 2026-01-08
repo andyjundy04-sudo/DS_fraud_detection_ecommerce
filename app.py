@@ -6,31 +6,31 @@ import sys
 import os
 from datetime import datetime
 import plotly.express as px 
+from pathlib import Path
 
 # --- HACK UNTUK PICKLE IMPORT ERROR ---
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+#sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 
 # ---------------------------------------------------------
 # LOAD ASSETS
 # ---------------------------------------------------------
+
+#BASE_DIR = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+BASE_DIR = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+
 @st.cache_resource
 def load_assets():
-    curr_dir = os.path.dirname(__file__)
-    model_path = os.path.join(curr_dir, "fraud_model.pkl")
-    table_path = os.path.join(curr_dir, "threshold_table.csv")
-    fi_path = pd.read_csv(os.path.join(curr_dir, 'feature_importance_permutation.csv'))
-    
-    model = joblib.load(model_path)
-    threshold_data = pd.read_csv(table_path)
-    fi_df = pd.read_csv(fi_path)
-    return model, threshold_data, fi_df
+    model = joblib.load(BASE_DIR / "fraud_model.pkl")
+    threshold_table = pd.read_csv(BASE_DIR / "threshold_table.csv")
+    fi_df = pd.read_csv(BASE_DIR / "feature_importance_permutation.csv")
+    return model, threshold_table, fi_df
 
 model, threshold_table, fi_df = load_assets()
 
-st.write("fi_df type:", type(fi_df))
-st.write("threshold_table type:", type(threshold_table))
-st.write("model type:", type(model))
+st.write(type(fi_df))            # pandas.core.frame.DataFrame
+st.write(type(threshold_table))  # pandas.core.frame.DataFrame
+st.write(type(model))            # sklearn / xgboost estimator
 
 # ---------------------------------------------------------
 # SIDEBAR
