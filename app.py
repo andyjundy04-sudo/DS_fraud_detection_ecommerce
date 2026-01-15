@@ -45,6 +45,7 @@ def get_user_input():
     merchant = st.sidebar.selectbox('Merchant Category', ['Electronics', 'Fashion', 'Food', 'Travel', 'Health'])
     
     promo = st.sidebar.checkbox('Promo Used?')
+    avs_match = st.sidebar.checkbox('AVS match?')
     three_ds = st.sidebar.checkbox('3DS Flag Active?')
     
     trans_date = st.sidebar.date_input('Transaction Date', datetime.now())
@@ -61,6 +62,7 @@ def get_user_input():
         'channel': channel,
         'merchant_category': merchant,
         'promo_used': 1 if promo else 0,
+        'avs_match' : 1 if avs_match else 0,
         'three_ds_flag': 1 if three_ds else 0,
         'shipping_distance_km': shipping_dist,
         'month': dt.month,
