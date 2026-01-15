@@ -27,10 +27,10 @@ def load_assets():
     return model, threshold_table, fi_df
 
 model, threshold_table, fi_df = load_assets()
-
-# ---------------------------------------------------------
+ 
+# -------------------------------------------------------
 # SIDEBAR
-# ---------------------------------------------------------
+# -------------------------------------------------------
 st.sidebar.header('📝 Detail Transaksi')
 
 def get_user_input():
